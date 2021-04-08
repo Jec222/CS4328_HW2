@@ -1,0 +1,9 @@
+total 24
+drwxrwxrwx 1 kiwi kiwi   512 Apr  2 01:45 .
+drwxrwxrwx 1 kiwi kiwi   512 Mar 21 20:58 ..
+drwxrwxrwx 1 kiwi kiwi   512 Apr  1 20:40 .git
+-rwxrwxrwx 1 kiwi kiwi    12 Mar 19 16:00 README.md
+-rwxrwxrwx 1 kiwi kiwi    17 Apr  1 23:03 file.txt
+-rwxrwxrwx 1 kiwi kiwi     0 Apr  2  2021 output.txt
+-rwxrwxrwx 1 kiwi kiwi 17200 Apr  2 01:45 shhh
+-rwxrwxrwx 1 kiwi kiwi  3094 Apr  2 01:45 shhh.c
