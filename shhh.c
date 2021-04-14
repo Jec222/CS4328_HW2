@@ -55,9 +55,6 @@ int main(void)
 		argv[m] = 0;
 		if ( strcmp(argv[0],"exit") == 0 ) exit (0);
 
-		/* Your change starts from here */
-		//1.preprocessing the array 
-
 		bool input_redir = false;
 		char*  input_redir_file;
 		char*  output_redir_file;
