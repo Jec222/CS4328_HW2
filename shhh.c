@@ -62,14 +62,12 @@ int main(void)
 		char*  input_redir_file;
 		char*  output_redir_file;
 		bool output_redir = false;
-		bool pipe_flag = false;
 		int pipe_counter = 0;
-
-
 			
 		int start[20] = {0}; // the start of each process 
- 
-		for (int k = 0; k < m; k++) // m size of argv
+
+		int k = 0;
+		for (k = 0; k < m; k++) // m size of argv
 		{
 			if (strcmp (argv[k], "<") == 0)
 			{
@@ -85,7 +83,6 @@ int main(void)
 			}
 			else if (strcmp (argv[k], "|") == 0)
 			{
-				pipe_flag = true;
 				argv[k] = 0;
 				start[pipe_counter + 1] = k + 1; // save position after pipe
 				pipe_counter++;
@@ -97,11 +94,11 @@ int main(void)
 		int r_fd[2];
 		//int pid;
 		// need to create the child processes & pipes
-		for (int k = 0; k <= pipe_counter; k++)
+		k = 0;
+		for (k = 0; k <= pipe_counter; k++)
 		{
 			if (pipe_counter > 0 && k != pipe_counter)//if (/*there are pipes */ && /*not last child*/)
 			{	
-				printf("creating a pipe\n");
 				pipe(r_fd);
 			}
 			int pid = fork();
@@ -126,8 +123,7 @@ int main(void)
 			{
 				if((input_redir == true) && (k == 0)) // deal with input rederection
 				{	
-					printf("entered >\n");
-					int file_hadler = open(input_redir_file,O_RDONLY , 0400);//,0777);
+					int file_hadler = open(input_redir_file,O_RDONLY , 0777);//,0777);
 					close(0); // set standard input invalid
 					dup(file_hadler);
 					close(file_hadler);// set invalid return to the system
@@ -165,7 +161,7 @@ int main(void)
 				}
 				if (output_redir && k == pipe_counter)/*output redir && last process*/
 				{   // deal with output redirection
-					int n = creat(output_redir_file,O_WRONLY);//|O_CREAT,0777);
+					int n = creat(output_redir_file,O_RDONLY|O_CREAT);
 					close(1);
 					dup(n);
 					close(n);
